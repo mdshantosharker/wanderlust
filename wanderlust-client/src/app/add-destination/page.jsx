@@ -10,6 +10,7 @@ import {
   Label,
   TextField,
   Card,
+  toast,
 } from "@heroui/react";
 import React from "react";
 
@@ -28,7 +29,7 @@ const AddDestinationPage = () => {
       body: JSON.stringify(destination),
     });
     const data = await res.json();
-    console.log(data);
+    toast.success("added new  destination");
   };
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 py-12 px-4 sm:px-6 lg:px-8">
