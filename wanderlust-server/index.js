@@ -25,6 +25,11 @@ async function run() {
     const db = client.db("wanderlust");
     const destinationCollection = db.collection("destinations");
 
+    app.get("/destination", async (req, res) => {
+      const result = await destinationCollection.find().toArray();
+      res.send(result);
+    });
+
     app.post("/destination", async (req, res) => {
       const destinationData = req.body;
       console.log(destinationData);
