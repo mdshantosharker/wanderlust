@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ToastProvider } from "@heroui/react";
+import { ToastContainer } from "react-toastify";
 
 const JosefinSans = Josefin_Sans({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
         <Navbar />
          <ToastProvider placement="top"/>
+          <ToastContainer />
         <main className="container mx-auto px-4">{children}</main>
         <Footer />
       </body>

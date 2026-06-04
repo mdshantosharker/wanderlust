@@ -8,10 +8,10 @@ import React from "react";
 
 const Navbar = () => {
   const { data: session } = authClient.useSession();
+  const user = session?.user;
+  // console.log(user);
   const router = useRouter();
   // console.log(session.user);
-  const user = session?.user;
-  console.log(user);
 
   const logOut = async (e) => {
     await authClient.signOut({
