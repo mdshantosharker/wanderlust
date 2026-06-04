@@ -88,7 +88,7 @@ const SignInPage = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 z-10 text-default-500"
                   >
-                    {showPassword ? <FiEyeOff size={18} /> : <Eye size={18} />}
+                    {showPassword ? <FiEyeOff size={18} /> : <Eye />}
                   </button>
                 </div>
 
