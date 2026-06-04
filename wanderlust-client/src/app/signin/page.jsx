@@ -1,5 +1,7 @@
 "use client";
-import { authClient } from "@/lib/auth-client";
+import React, { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
+import { FiEyeOff } from "react-icons/fi";
 import { Check, Eye } from "@gravity-ui/icons";
 import {
   Button,
@@ -14,37 +16,30 @@ import {
   toast,
 } from "@heroui/react";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
-import React, { useState } from "react";
-import { FcGoogle } from "react-icons/fc";
-import { FiEyeOff } from "react-icons/fi";
-
-const SignUpPage = () => {
+const SignInPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const signUpData = Object.fromEntries(formData.entries());
-    console.log(signUpData);
+    const SignInData = Object.fromEntries(formData.entries());
+    const { email, password } = SignInData;
 
-    const { name, email, password, image } = signUpData;
-
-    const { data, error } = await authClient.signUp.email({
-      name: name, // required
-      email: email, // required
-      password: password, // required
-      image: image,
+    const { data, error } = await authClient.signIn.email({
+      email: email,
+      password: password,
+      rememberMe: true,
       callbackURL: "/",
     });
     if (data) {
+      toast("successfully login");
       redirect("/");
     }
     if (error) {
-      toast.error("wrong credential");
+      toast("wrong credential");
     }
-    console.log(data, error);
   };
-
   const handleGoogle = async () => {
     const data = await authClient.signIn.social({
       provider: "google",
@@ -56,25 +51,11 @@ const SignUpPage = () => {
         <div className="flex justify-center">
           <Card className="border rounded-none w-full max-w-md p-6 shadow-lg">
             <div className="text-center mb-6">
-              <h1 className="text-3xl font-bold">Create Account</h1>
-              <p className="text-default-500 mt-1">
-                Start your adventure with Wanderlust
-              </p>
+              <h1 className="text-3xl font-bold">Welcome,back</h1>
+              <p className="text-default-500 mt-1">Login your account</p>
             </div>
 
             <Form onSubmit={onSubmit} className="flex flex-col gap-4">
-              <TextField isRequired name="name" type="text">
-                <Label>Name</Label>
-                <Input placeholder="Enter your name" />
-                <FieldError />
-              </TextField>
-
-              <TextField name="image" type="url">
-                <Label>Image URL</Label>
-                <Input placeholder="Image url" />
-                <FieldError />
-              </TextField>
-
               <TextField
                 isRequired
                 name="email"
@@ -96,21 +77,6 @@ const SignUpPage = () => {
                 minLength={8}
                 name="password"
                 type={showPassword ? "text" : "password"}
-                validate={(value) => {
-                  if (value.length < 8) {
-                    return "Password must be at least 8 characters";
-                  }
-
-                  if (!/[A-Z]/.test(value)) {
-                    return "Password must contain at least one uppercase letter";
-                  }
-
-                  if (!/[0-9]/.test(value)) {
-                    return "Password must contain at least one number";
-                  }
-
-                  return null;
-                }}
               >
                 <Label>Password</Label>
 
@@ -126,10 +92,6 @@ const SignUpPage = () => {
                   </button>
                 </div>
 
-                <Description>
-                  Must be at least 8 characters with 1 uppercase and 1 number
-                </Description>
-
                 <FieldError />
               </TextField>
 
@@ -137,7 +99,7 @@ const SignUpPage = () => {
                 className="rounded-none w-full bg-cyan-500 text-white"
                 type="submit"
               >
-                Create Account
+                Login
               </Button>
             </Form>
 
@@ -151,7 +113,6 @@ const SignUpPage = () => {
 
             <Button
               onClick={handleGoogle}
-              // onClick={handleGoogleSignin}
               variant="outline"
               className="w-full rounded-none "
             >
@@ -159,12 +120,12 @@ const SignUpPage = () => {
               Sign in with Google
             </Button>
             <p className="text-center text-sm text-default-500 mt-5">
-              Already have an account?{" "}
+              Don't have an account?{" "}
               <Link
-                href="/signin"
+                href="/signup"
                 className="text-cyan-500 font-medium hover:underline"
               >
-                Sign In
+                SignUp
               </Link>
             </p>
           </Card>
@@ -174,4 +135,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default SignInPage;
