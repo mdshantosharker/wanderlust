@@ -1,3 +1,5 @@
+
+import DeleteModal from "@/components/DeleteModal";
 import EditForm from "@/components/EditForm";
 import { CalendarDays, Check, MapPin, Pencil, Star } from "lucide-react";
 import Image from "next/image";
@@ -12,6 +14,7 @@ const DestinationsDetailsPage = async ({ params }) => {
 
   const {
     imageUrl,
+    _id,
     price,
     destinationName,
     duration,
@@ -32,8 +35,9 @@ const DestinationsDetailsPage = async ({ params }) => {
           className="w-full h-112.5 object-cover rounded-2xl shadow-xl"
         />
 
-        <div className="absolute top-5 right-5 z-20">
+        <div className="absolute top-5 right-5 z-20 flex gap-3">
           <EditForm destination={destination} />
+          <DeleteModal id={_id} />
         </div>
       </div>
 
