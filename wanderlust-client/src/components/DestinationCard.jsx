@@ -1,10 +1,12 @@
 import Image from "next/image";
 import React from "react";
 import { CalendarDays, Clock3, MapPin } from "lucide-react";
+import Link from "next/link";
 
 const DestinationCard = ({ destination }) => {
   const {
     destinationName,
+    _id,
     country,
     category,
     price,
@@ -59,9 +61,11 @@ const DestinationCard = ({ destination }) => {
           </div>
         </div>
 
-        <button className="w-full rounded-xl bg-linear-to-r from-sky-500 to-blue-700 py-3 font-semibold text-white transition hover:from-blue-700 hover:to-sky-500">
-          View Details →
-        </button>
+        <Link href={`/destinations/${_id}`}>
+          <button className="w-full rounded-xl bg-linear-to-r from-sky-500 to-blue-700 py-3 font-semibold text-white transition hover:from-blue-700 hover:to-sky-500">
+            View Details →
+          </button>
+        </Link>
       </div>
     </div>
   );
