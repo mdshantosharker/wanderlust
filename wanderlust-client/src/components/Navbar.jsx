@@ -4,12 +4,13 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <section className="mx-auto container">
-      <nav className="flex justify-between p-5 items-center">
+    <section className="shadow-2xl mb-5">
+      <nav className=" mx-auto container flex justify-between p-5 items-center ">
         <ul className="flex justify-between gap-10">
           <Link href={"/"}>Home</Link>
           <Link href={"/destinations"}>Destinations</Link>
           <Link href={"/my-bookings"}>My Bookings</Link>
+          <Link href={"/add-destination"}>Add Destination</Link>
         </ul>
 
         <div>
