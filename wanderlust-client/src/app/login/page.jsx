@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { Check } from "@gravity-ui/icons";
+import { Icon } from "@iconify/react";
 import {
   Button,
   Description,
@@ -45,8 +46,14 @@ const LoginPage = () => {
       toast.success("Login Successfully");
     }
   };
+
+  const handleGoogle = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
+  };
   return (
-    <div className="min-h-[60vh] flex items-center justify-center bg-linear-to-br from-slate-950 via-blue-950 to-black px-4">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-950 via-blue-950 to-black px-4">
       <div className="w-full max-w-md">
         <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl p-8">
           <h1 className="text-3xl font-bold text-white text-center mb-8">
@@ -122,6 +129,17 @@ const LoginPage = () => {
               Login
             </Button>
           </Form>
+
+          <hr className="mt-5" />
+
+          <Button
+            onClick={handleGoogle}
+            className="w-full mt-5"
+            variant="tertiary"
+          >
+            <Icon icon="devicon:google" />
+            Sign in with Google
+          </Button>
           <h1 className="text-center mt-2 text-white">
             Your don't have an account?{" "}
             <Link className="text-blue-500" href={"/signup"}>

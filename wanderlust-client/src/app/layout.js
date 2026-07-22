@@ -6,9 +6,8 @@ import { Toast } from "@heroui/react";
 
 const BlackOpsOne = Black_Ops_One({
   subsets: ["latin"],
-   weight: "400",
+  weight: "400",
 });
-
 
 export const metadata = {
   title: "Create Next App",
@@ -20,7 +19,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${BlackOpsOne.className}  h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <Navbar />
-        <Toast.Provider />
+        <Toast.Provider placement="top" />
         <main className="">{children}</main>
         <Footer />
       </body>

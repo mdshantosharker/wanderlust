@@ -11,9 +11,11 @@ import {
   TextField,
   toast,
 } from "@heroui/react";
+import { Icon } from "@iconify/react";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import React from "react";
 import { useState } from "react";
 
 const SignUpPage = () => {
@@ -45,6 +47,12 @@ const SignUpPage = () => {
     if (data) {
       toast.success("signup Successfully");
     }
+  };
+
+  const handleGoogle = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-950 via-blue-950 to-black px-4">
@@ -168,6 +176,16 @@ const SignUpPage = () => {
               Sign Up
             </Button>
           </Form>
+          <hr className="mt-5" />
+
+          <Button
+            onClick={handleGoogle}
+            className="w-full mt-5"
+            variant="tertiary"
+          >
+            <Icon icon="devicon:google" />
+            Sign in with Google
+          </Button>
           <h1 className="text-center mt-2 text-white">
             Already have an account?{" "}
             <Link className="text-blue-500" href={"/login"}>

@@ -6,7 +6,7 @@ const DestinationsPage = async () => {
   const destinations = await res.json();
   console.log(destinations);
   return (
-    <div className="mb-20">
+    <div className="mb-20 mx-auto container">
       <h1 className="font-bold text-center text-5xl py-10">All Destinations</h1>
 
       <div className="grid grid-cols-4 gap-8">
