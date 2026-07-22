@@ -4,7 +4,7 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <section className="shadow-2xl mb-5">
+    <section className="shadow-2xl">
       <nav className=" mx-auto container flex justify-between p-5 items-center ">
         <ul className="flex justify-between gap-10">
           <Link href={"/"}>Home</Link>
@@ -23,9 +23,9 @@ const Navbar = () => {
         </div>
 
         <ul className="flex justify-between gap-10">
-          <li>Profile</li>
-          <li>Login</li>
-          <li>Sign Up</li>
+          <Link href={"/profile"}>Profile</Link>
+          <Link href={"/login"}>Login</Link>
+          <Link href={"/signup"}>Sign Up</Link>
         </ul>
       </nav>
     </section>

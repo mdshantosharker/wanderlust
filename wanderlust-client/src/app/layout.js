@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
         <Navbar />
         <Toast.Provider />
-        <main className="mx-auto container">{children}</main>
+        <main className="">{children}</main>
         <Footer />
       </body>
     </html>
