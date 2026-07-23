@@ -18,6 +18,17 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   },
 });
+
+
+const verifyToken = (req,res,next)=>{
+  
+}
+
+
+
+
+
+
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
@@ -52,6 +63,8 @@ async function run() {
       const result = await destinationCollection.find().toArray();
       res.send(result);
     });
+
+    // middleware
 
     app.get("/destination/:id", async (req, res) => {
       const { id } = req.params;
