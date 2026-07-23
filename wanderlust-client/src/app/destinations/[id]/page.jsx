@@ -1,14 +1,26 @@
 import BookingCard from "@/components/BookingCard";
 import DeleteModal from "@/components/DeleteModal";
 import EditForm from "@/components/EditForm";
+import { auth } from "@/lib/auth";
 import { CalendarDays, Check, MapPin, Pencil, Star } from "lucide-react";
+import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 
 const DestinationsDetailsPage = async ({ params }) => {
   const { id } = await params;
 
-  const res = await fetch(`http://localhost:5000/destination/${id}`);
+  const {token} = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+  console.log(token);
+
+  const res = await fetch(`http://localhost:5000/destination/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
   const destination = await res.json();
 
@@ -138,7 +150,7 @@ const DestinationsDetailsPage = async ({ params }) => {
             </div>
           </div>
         </div> */}
-        <BookingCard destination={destination}/>
+        <BookingCard destination={destination} />
       </div>
     </div>
   );

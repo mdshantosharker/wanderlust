@@ -30,7 +30,7 @@ const EditForm = ({ destination }) => {
     departureDate,
     category,
   } = destination;
-  console.log(category);
+  // console.log(category);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
