@@ -26,6 +26,20 @@ async function run() {
 
     const db = client.db("wanderlust");
     const destinationCollection = db.collection("destinations");
+    const bookingCollection = db.collection("bookings");
+
+    app.post("/booking", async (req, res) => {
+      const bookingData = req.body;
+      const result = await bookingCollection.insertOne(bookingData);
+      res.send(result);
+    });
+
+    app.get("/booking/:userId", async (req, res) => {
+      const {userId} = req.params
+      const result = await bookingCollection.find({userId}).toArray();
+      res.send(result);
+    });
+
 
     app.get("/destination", async (req, res) => {
       const result = await destinationCollection.find().toArray();
