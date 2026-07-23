@@ -1,4 +1,4 @@
-
+import BookingCard from "@/components/BookingCard";
 import DeleteModal from "@/components/DeleteModal";
 import EditForm from "@/components/EditForm";
 import { CalendarDays, Check, MapPin, Pencil, Star } from "lucide-react";
@@ -97,7 +97,7 @@ const DestinationsDetailsPage = async ({ params }) => {
         </div>
 
         {/* Booking Card */}
-        <div>
+        {/* <div>
           <div className="sticky top-24 rounded-2xl border bg-white shadow-xl p-6">
             <p className="text-gray-500">Starting From</p>
 
@@ -137,7 +137,8 @@ const DestinationsDetailsPage = async ({ params }) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
+        <BookingCard destination={destination}/>
       </div>
     </div>
   );
