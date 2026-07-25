@@ -35,16 +35,21 @@ const BookingCard = ({ destination }) => {
     };
     console.log(bookingData);
 
+    const { data, error } = await authClient.token();
+    const token = data?.token;
+    console.log(token);
+
     const res = await fetch(`http://localhost:5000/booking`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(bookingData),
     });
-    const data = await res.json();
-    console.log(data);
-    if (data.insertedId) {
+    const booking = await res.json();
+    console.log(booking);
+    if (booking.insertedId) {
       toast.success("Booking successfully");
       router.push("/destinations");
     }
